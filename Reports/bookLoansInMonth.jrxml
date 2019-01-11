@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="bookLoansInMonth" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2f85fce3-a5e5-410c-9c56-c9e51e1d8b2b">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL Connector"/>
+	<queryString language="SQL">
+		<![CDATA[select dataczas_wypozyczenia, count(*) as ile from wypozyczenie
+where dataczas_wypozyczenia like '2018-10%'
+group by dataczas_wypozyczenia;]]>
+	</queryString>
+	<field name="dataczas_wypozyczenia" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="dataczas_wypozyczenia"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="wypozyczenie"/>
+	</field>
+	<field name="ile" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ile"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="0" width="800" height="30" uuid="0eadbefc-9efe-43fa-8c1c-04aadeaa0c37"/>
+				<textElement textAlignment="Center">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[Wykres wypozyczen ksiazek w danym dniu]]></text>
+			</staticText>
+		</band>
+	</title>
+	<summary>
+		<band height="350" splitType="Stretch">
+			<barChart>
+				<chart isShowLegend="false" evaluationTime="Report" theme="aegean">
+					<reportElement x="0" y="0" width="800" height="350" uuid="052a2d08-0c6e-42b9-9cb5-2591bca64d9f"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["SERIES 1"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{dataczas_wypozyczenia}.toString()]]></categoryExpression>
+						<valueExpression><![CDATA[$F{ile}]]></valueExpression>
+						<labelExpression><![CDATA[$F{dataczas_wypozyczenia}.toString()]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot foregroundAlpha="1.0"/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</summary>
+</jasperReport>

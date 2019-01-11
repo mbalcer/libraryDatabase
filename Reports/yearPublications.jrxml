@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rok_wydania" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="58769023-01dd-4e6e-b619-86b1eb57e42a">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL Connector"/>
+	<queryString language="SQL">
+		<![CDATA[select rok_wydania, count(*) as ile from ksiazka
+group by rok_wydania
+order by rok_wydania desc]]>
+	</queryString>
+	<field name="rok_wydania" class="java.util.Date">
+		<property name="com.jaspersoft.studio.field.label" value="rok_wydania"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ksiazka"/>
+	</field>
+	<field name="ile" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ile"/>
+	</field>
+	<title>
+		<band height="41">
+			<staticText>
+				<reportElement x="0" y="0" width="560" height="37" uuid="610a4142-f37b-43a7-bb08-9529a1c6f484"/>
+				<textElement textAlignment="Center">
+					<font size="22"/>
+					<paragraph lineSpacing="AtLeast"/>
+				</textElement>
+				<text><![CDATA[Raport ilości wydanych książek w danym roku]]></text>
+			</staticText>
+		</band>
+	</title>
+	<summary>
+		<band height="400" splitType="Stretch">
+			<pieChart>
+				<chart isShowLegend="true" evaluationTime="Report" theme="default">
+					<reportElement positionType="Float" x="30" y="0" width="510" height="400" uuid="876e7eb8-0668-4b95-8b76-552c42ea3fd3"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend position="Right"/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[Integer.toString($F{rok_wydania}.getYear()+1900)]]></keyExpression>
+					<valueExpression><![CDATA[$F{ile}]]></valueExpression>
+					<labelExpression><![CDATA[Integer.toString($F{rok_wydania}.getYear()+1900)]]></labelExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+		</band>
+	</summary>
+</jasperReport>
