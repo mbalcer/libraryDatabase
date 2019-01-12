@@ -6,7 +6,7 @@
 	<queryString language="SQL">
 		<![CDATA[select dataczas_wypozyczenia, count(*) as ile from wypozyczenie
 where dataczas_wypozyczenia like '2018-10%'
-group by dataczas_wypozyczenia;]]>
+group by dataczas_wypozyczenia]]>
 	</queryString>
 	<field name="dataczas_wypozyczenia" class="java.sql.Date">
 		<property name="com.jaspersoft.studio.field.label" value="dataczas_wypozyczenia"/>
@@ -25,7 +25,7 @@ group by dataczas_wypozyczenia;]]>
 				<textElement textAlignment="Center">
 					<font size="20"/>
 				</textElement>
-				<text><![CDATA[Wykres wypozyczen ksiazek w danym dniu]]></text>
+				<text><![CDATA[Wykres wypozyczeń książek w danym dniu]]></text>
 			</staticText>
 		</band>
 	</title>

@@ -149,7 +149,7 @@ where imie = 'Jadwiga' AND nazwisko = 'Bilecka']]>
 				<textElement textAlignment="Center">
 					<font size="20" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Ksiazki wypozyczane przez czytelnika]]></text>
+				<text><![CDATA[Książki wypożyczane przez czytelnika]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="0" y="80" width="150" height="20" uuid="5b40ed34-56f8-490f-8ee2-221f631dd7e7"/>
@@ -188,7 +188,7 @@ where imie = 'Jadwiga' AND nazwisko = 'Bilecka']]>
 				<textElement>
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Tytul ksiazki]]></text>
+				<text><![CDATA[Tytuł książki]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" positionType="Float" x="380" y="0" width="144" height="20" forecolor="#000000" uuid="2ef8d2ab-cf7a-45fd-a71a-48e84d96c36a">
@@ -197,7 +197,7 @@ where imie = 'Jadwiga' AND nazwisko = 'Bilecka']]>
 				<textElement>
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Czas wypozyczenia]]></text>
+				<text><![CDATA[Czas wypożyczenia]]></text>
 			</staticText>
 		</band>
 	</columnHeader>

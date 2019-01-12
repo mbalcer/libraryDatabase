@@ -89,7 +89,7 @@
 				<reportElement style="Column header" x="0" y="19" width="555" height="15" uuid="795464a8-b9ad-4775-be64-3d310615933f">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="463eda52-6d59-4b3b-a8a4-243a51839626"/>
 				</reportElement>
-				<text><![CDATA[Spis ksiazek autorow]]></text>
+				<text><![CDATA[Spis książek autorów]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
