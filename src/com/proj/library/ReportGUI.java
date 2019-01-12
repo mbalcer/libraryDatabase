@@ -151,8 +151,8 @@ public class ReportGUI {
 		btnReport3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String sourcePath = mainSourcePath+"bookLoansInMonth.jasper";
-				BorrowBooksList borrowBooksList = new BorrowBooksList();
-		    	ArrayList<BorrowBooks> dataList = borrowBooksList.select(monthReport3.getSelectedItem().toString());
+				DataList borrowBooksList = new DataList();
+		    	ArrayList<BorrowBooks> dataList = borrowBooksList.selectBorrowBooks(monthReport3.getSelectedItem().toString());
 
 		    	JRBeanCollectionDataSource beanColDataSource = new 
 				           JRBeanCollectionDataSource(dataList);
@@ -181,8 +181,8 @@ public class ReportGUI {
 		btnReport4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String sourcePath = mainSourcePath+"branchesInCities.jasper";
-				BranchCityList branchCityList = new BranchCityList();
-		    	ArrayList<BranchCity> dataList = branchCityList.select(cityReport4.getSelectedItem().toString());
+				DataList branchCityList = new DataList();
+		    	ArrayList<BranchCity> dataList = branchCityList.selectBranchCity(cityReport4.getSelectedItem().toString());
 
 		    	JRBeanCollectionDataSource beanColDataSource = new 
 				           JRBeanCollectionDataSource(dataList);
@@ -218,8 +218,8 @@ public class ReportGUI {
 		btnReport5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String sourcePath = mainSourcePath+"readerAndBooks.jasper";
-				ReaderBooksList readerBooksList = new ReaderBooksList();
-		    	ArrayList<ReaderBooks> dataList = readerBooksList.select(firstNameReport5.getText(), lastNameReport5.getText());
+				DataList readerBooksList = new DataList();
+		    	ArrayList<ReaderBooks> dataList = readerBooksList.selectReaderBooks(firstNameReport5.getText(), lastNameReport5.getText());
 
 		        JRBeanCollectionDataSource beanColDataSource = new 
 		           JRBeanCollectionDataSource(dataList);
