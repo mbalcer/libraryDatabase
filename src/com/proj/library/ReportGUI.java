@@ -228,6 +228,26 @@ public class ReportGUI {
 		lastNameReport5.setColumns(10);
 		
 		JButton btnReport5 = new JButton("Poka\u017C raport");
+		btnReport5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String sourcePath = "E:\\Eclipse-workspace\\LibraryDatabase\\Reports\\readerAndBooks.jasper";
+				ReaderBooksList readerBooksList = new ReaderBooksList();
+		    	ArrayList<ReaderBooks> dataList = readerBooksList.select(firstNameReport5.getText(), lastNameReport5.getText());
+
+		        JRBeanCollectionDataSource beanColDataSource = new 
+		           JRBeanCollectionDataSource(dataList);
+		        Map parameters = new HashMap();
+		        try {
+		           JasperPrint js = JasperFillManager.fillReport( 
+		        		sourcePath, parameters, beanColDataSource);
+		           
+		           PrintReport report = new PrintReport();
+		           report.showReport(js);
+		        } catch (JRException e) {
+		           e.printStackTrace();
+		        }
+			}
+		});
 		report5.add(btnReport5);
 		
 		JPanel footer = new JPanel();
