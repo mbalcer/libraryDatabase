@@ -34,7 +34,7 @@ public class PrintReport extends JFrame {
             viewer.setVisible(true);
             
             this.add(viewer);
-            this.setSize(900,500);
+            this.setSize(900,800);
             this.setVisible(true);
             
         } catch(Exception e) {

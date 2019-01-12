@@ -6,7 +6,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -16,27 +15,15 @@ import java.util.Map;
 import javax.swing.SwingConstants;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import javax.swing.BoxLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.border.LineBorder;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
-import java.awt.Color;
 import javax.swing.JButton;
-import java.awt.CardLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import javax.swing.JSplitPane;
-import javax.swing.JToolBar;
-import javax.swing.JDesktopPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
-import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
@@ -47,6 +34,7 @@ public class ReportGUI {
 	private JTextField lastNameReport5;
 	private JComboBox monthReport3;
 	private JComboBox cityReport4;
+	private String mainSourcePath;
 
 	/**
 	 * Launch the application.
@@ -70,11 +58,27 @@ public class ReportGUI {
 	public ReportGUI() {
 		initialize();
 	}
+	
+	
+	private void fillAndShowReport(String sourcePath, JRBeanCollectionDataSource beanColDataSource) {
+		Map parameters = new HashMap();
+        try {
+           JasperPrint js = JasperFillManager.fillReport( 
+        		sourcePath, parameters, beanColDataSource);
+           
+           PrintReport report = new PrintReport();
+           report.showReport(js);
+        } catch (JRException e) {
+           e.printStackTrace();
+        }
+	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		mainSourcePath = "E:\\Eclipse-workspace\\LibraryDatabase\\Reports\\";
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 400, 350);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -102,8 +106,9 @@ public class ReportGUI {
 		JButton btnReport1 = new JButton("Poka\u017C raport");
 		btnReport1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
 				PrintReport report1 = new PrintReport();
-				report1.showReport("E:\\Eclipse-workspace\\LibraryDatabase\\Reports\\authorsBooks.jrxml");
+				report1.showReport(mainSourcePath+"authorsBooks.jrxml");
 			}
 		});
 		report1.add(btnReport1);
@@ -121,7 +126,7 @@ public class ReportGUI {
 		btnReport2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				PrintReport report2 = new PrintReport();
-				report2.showReport("E:\\Eclipse-workspace\\LibraryDatabase\\Reports\\yearPublications.jrxml");
+				report2.showReport(mainSourcePath+"yearPublications.jrxml");
 			}
 		});
 		report2.add(btnReport2);
@@ -145,22 +150,13 @@ public class ReportGUI {
 		JButton btnReport3 = new JButton("Poka\u017C raport");
 		btnReport3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String sourcePath = "E:\\Eclipse-workspace\\LibraryDatabase\\Reports\\bookLoansInMonth.jasper";
+				String sourcePath = mainSourcePath+"bookLoansInMonth.jasper";
 				BorrowBooksList borrowBooksList = new BorrowBooksList();
 		    	ArrayList<BorrowBooks> dataList = borrowBooksList.select(monthReport3.getSelectedItem().toString());
 
-		        JRBeanCollectionDataSource beanColDataSource = new 
-		           JRBeanCollectionDataSource(dataList);
-		        Map parameters = new HashMap();
-		        try {
-		           JasperPrint js = JasperFillManager.fillReport( 
-		        		sourcePath, parameters, beanColDataSource);
-		           
-		           PrintReport report = new PrintReport();
-		           report.showReport(js);
-		        } catch (JRException e) {
-		           e.printStackTrace();
-		        }
+		    	JRBeanCollectionDataSource beanColDataSource = new 
+				           JRBeanCollectionDataSource(dataList);
+				fillAndShowReport(sourcePath, beanColDataSource);
 			}
 		});
 		report3.add(btnReport3);
@@ -184,22 +180,13 @@ public class ReportGUI {
 		JButton btnReport4 = new JButton("Poka\u017C raport");
 		btnReport4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String sourcePath = "E:\\Eclipse-workspace\\LibraryDatabase\\Reports\\branchesInCities.jasper";
+				String sourcePath = mainSourcePath+"branchesInCities.jasper";
 				BranchCityList branchCityList = new BranchCityList();
 		    	ArrayList<BranchCity> dataList = branchCityList.select(cityReport4.getSelectedItem().toString());
 
-		        JRBeanCollectionDataSource beanColDataSource = new 
-		           JRBeanCollectionDataSource(dataList);
-		        Map parameters = new HashMap();
-		        try {
-		           JasperPrint js = JasperFillManager.fillReport( 
-		        		sourcePath, parameters, beanColDataSource);
-		           
-		           PrintReport report = new PrintReport();
-		           report.showReport(js);
-		        } catch (JRException e) {
-		           e.printStackTrace();
-		        }
+		    	JRBeanCollectionDataSource beanColDataSource = new 
+				           JRBeanCollectionDataSource(dataList);
+				fillAndShowReport(sourcePath, beanColDataSource);
 			}
 		});
 		report4.add(btnReport4);
@@ -230,23 +217,16 @@ public class ReportGUI {
 		JButton btnReport5 = new JButton("Poka\u017C raport");
 		btnReport5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String sourcePath = "E:\\Eclipse-workspace\\LibraryDatabase\\Reports\\readerAndBooks.jasper";
+				String sourcePath = mainSourcePath+"readerAndBooks.jasper";
 				ReaderBooksList readerBooksList = new ReaderBooksList();
 		    	ArrayList<ReaderBooks> dataList = readerBooksList.select(firstNameReport5.getText(), lastNameReport5.getText());
 
 		        JRBeanCollectionDataSource beanColDataSource = new 
 		           JRBeanCollectionDataSource(dataList);
-		        Map parameters = new HashMap();
-		        try {
-		           JasperPrint js = JasperFillManager.fillReport( 
-		        		sourcePath, parameters, beanColDataSource);
-		           
-		           PrintReport report = new PrintReport();
-		           report.showReport(js);
-		        } catch (JRException e) {
-		           e.printStackTrace();
-		        }
+		        fillAndShowReport(sourcePath, beanColDataSource);
 			}
+
+			
 		});
 		report5.add(btnReport5);
 		
