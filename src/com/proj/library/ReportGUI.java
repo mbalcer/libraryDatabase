@@ -184,7 +184,22 @@ public class ReportGUI {
 		JButton btnReport4 = new JButton("Poka\u017C raport");
 		btnReport4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println(cityReport4.getSelectedItem());
+				String sourcePath = "E:\\Eclipse-workspace\\LibraryDatabase\\Reports\\branchesInCities.jasper";
+				BranchCityList branchCityList = new BranchCityList();
+		    	ArrayList<BranchCity> dataList = branchCityList.select(cityReport4.getSelectedItem().toString());
+
+		        JRBeanCollectionDataSource beanColDataSource = new 
+		           JRBeanCollectionDataSource(dataList);
+		        Map parameters = new HashMap();
+		        try {
+		           JasperPrint js = JasperFillManager.fillReport( 
+		        		sourcePath, parameters, beanColDataSource);
+		           
+		           PrintReport report = new PrintReport();
+		           report.showReport(js);
+		        } catch (JRException e) {
+		           e.printStackTrace();
+		        }
 			}
 		});
 		report4.add(btnReport4);

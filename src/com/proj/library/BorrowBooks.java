@@ -12,7 +12,7 @@ public class BorrowBooks {
 		this.count = count;
 	}
 
-	public Date getDataczas_wypozyczenia() {
+	public Date getDataczas_wypozyczenia() { // nazwa przy get musi byæ taka jak w bazie
 		return dateBorrow;
 	}
 
